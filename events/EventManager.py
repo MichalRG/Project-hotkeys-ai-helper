@@ -1,20 +1,21 @@
 from typing import Optional
+from services.ConfigService import ConfigService
 from services.OpenAIService import OpenAIService
+from services.factories.ClientsFactory import ClientsFactory
 from utils.cliboard import get_clipboard, paste_to_cliboard
 
 
 class EventManager:
   def __init__(self) -> None:
+    self.config = ConfigService().get_config()
+    clients_factory = ClientsFactory()
+    self.translation_service = clients_factory.get_translation_service(self.config)
     self.open_ai_service = OpenAIService()
 
   def translate_event(self, text:Optional[str]=None):
-    system_prompt = """
-      I get text to translate, from english to polish or from polish to english depend on content.
-      I have to return only tranlsation! I don't add any additional description/ information, just pure translation.
-    """
     if not text:
-      text = get_clipboard()
+      text = get_clipboard() 
 
-    response = self.open_ai_service.process_request(system_prompt, text, token_limit=300)
-
+    response = self.translation_service.translate(text)
+    
     paste_to_cliboard(response)
