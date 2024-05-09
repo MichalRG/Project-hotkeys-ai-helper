@@ -2,3 +2,4 @@ keyboard
 openai
 pyperclip
 deepl
+ollama
