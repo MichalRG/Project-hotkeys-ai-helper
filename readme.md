@@ -12,12 +12,16 @@ This script in currenct version allows to use shortcuts to process request with 
 
 #### Configuration
 
-config.json allows to set one of two types of translation engine - openai and deepl (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has two posssible values: 'deepl' or 'openai'.
+config.json allows to set one of two types of translation engine - openai and deepl (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has two posssible values: 'deepl', 'ollama' or 'openai'.
 
 To use [deepl](https://www.deepl.com/pl/your-account/keys) u have to set deepl api key in your env varaibles, name your variable as "APIKEY-DEEPL".
 To use OpenAI u have to set openai api key in your env vars, name your variable as "APIKEY-OPENAI".
+To use [Ollama](https://ollama.com/) u have to download ollama and run it locally. Currently it use mistral model so to use ollama u have to download and run "mistral" model (TBH it doesnt work in the future I'll try to add configuraiton to manage models from config file, maybe mixtral or llama3 will be able to handle this task).
 
-**WARNING**: Because DeepL doesnt detect target translation language sometimes it may make two request instead of one before it will return answer
+**WARNING**:
+
+- Because DeepL doesnt detect target translation language sometimes it may make two request instead of one before it will return answer
+- Olla for mistral doesnt work for translation it's not able to understand that it has to translate text so it may not work :(
 
 ```json
 {
