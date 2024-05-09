@@ -104,3 +104,7 @@ A common way to use Chat Completions is to instruct the model to always return a
 ```
 
 ~60 tokens
+
+# TODO
+
+1. Translate part of script for ollama configuration is adjust only for mistral. It should be more generic I have to rewrite logic for passing prompt and adjust it to user's ollama model.
