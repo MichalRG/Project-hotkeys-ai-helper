@@ -1,5 +1,6 @@
 {
   "translation": {
-    "engine": "deepl"
+    "engine": "openai",
+    "model": "gpt-4o"
   }
 }

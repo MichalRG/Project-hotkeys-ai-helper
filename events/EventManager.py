@@ -1,6 +1,5 @@
 from typing import Optional
 from services.ConfigService import ConfigService
-from services.OpenAIService import OpenAIService
 from services.WolframAlphaService import WolframAlphaService
 from services.factories.ClientsFactory import ClientsFactory
 from utils.cliboard import get_clipboard, paste_to_cliboard
@@ -9,9 +8,8 @@ from utils.cliboard import get_clipboard, paste_to_cliboard
 class EventManager:
   def __init__(self) -> None:
     self.config = ConfigService().get_config()
-    clients_factory = ClientsFactory()
-    self.translation_service = clients_factory.get_translation_service(self.config)
-    self.open_ai_service = OpenAIService()
+    clients_factory = ClientsFactory(config=self.config)
+    self.translation_service = clients_factory.get_translation_service()
     self.wolfram_service = WolframAlphaService()
 
   def translate_event(self, text:Optional[str]=None):

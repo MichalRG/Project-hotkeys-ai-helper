@@ -5,9 +5,16 @@ import openai
 
 
 class OpenAIService:
-  def __init__(self) -> None:
+  def __init__(self, model: Optional[str] = "gpt-3.5-turbo") -> None:
     self.client = OpenAI(api_key=os.getenv("APIKEY-OPENAI"))
-    self.model = "gpt-3.5-turbo"
+    self.model = model
+
+  def set_model(self, model:str):
+    if not model:
+      print("ERROR with setting model lack of model variable")
+      return
+    
+    self.model = model
 
   def process_request(
     self,
