@@ -12,21 +12,30 @@ This script in currenct version allows to use shortcuts to process request with 
 
 #### Configuration
 
-config.json allows to set one of two types of translation engine - openai and deepl (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has two posssible values: 'deepl', 'ollama' or 'openai'.
+config.json allows to set one of three types of translation engine - openai/ ollama and deepl (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has two posssible values: 'deepl', 'ollama' or 'openai'.
 
 To use [deepl](https://www.deepl.com/pl/your-account/keys) u have to set deepl api key in your env varaibles, name your variable as "APIKEY-DEEPL".
 To use OpenAI u have to set openai api key in your env vars, name your variable as "APIKEY-OPENAI".
 To use [Ollama](https://ollama.com/) u have to download ollama and run it locally. Currently it use mistral model so to use ollama u have to download and run "mistral" model (TBH it doesnt work in the future I'll try to add configuraiton to manage models from config file, maybe mixtral or llama3 will be able to handle this task).
 
+Command to run ollama mistral model locally
+
+```bash
+ollama run mistral
+```
+
 **WARNING**:
 
 - Because DeepL doesnt detect target translation language sometimes it may make two request instead of one before it will return answer
-- Olla for mistral doesnt work for translation it's not able to understand that it has to translate text so it may not work :(
+- Olla mistral work very poorly for translation it's not able to understand that it has to translate text so it may not work :(
+
+Example of configuration in config.json:
 
 ```json
 {
   "translation": {
-    "engine": "deepl"
+    "engine": "deepl",
+    "model": "gpt-4o"
   }
 }
 ```
@@ -92,6 +101,36 @@ Who is the king of UK? = returns => "King Charles III (from 2022-09-08 to presen
 #### Shortcut:
 
 - ctrl + alt + 2
+
+### 4. General question
+
+#### Configuration
+
+config.json allows to set one of two types of general question engine - openai and ollama (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has two posssible values: 'ollama' or 'openai'.
+
+To use OpenAI u have to set openai api key in your env vars, name your variable as "APIKEY-OPENAI".
+To use [Ollama](https://ollama.com/) u have to download ollama and run it locally.
+
+Command to run ollama mistral model locally
+
+```bash
+ollama run mistral
+```
+
+Example of configuration in config.json:
+
+```json
+{
+  "translation": {
+    "engine": "openai",
+    "model": "gpt-4o"
+  }
+}
+```
+
+#### Shortcut:
+
+- ctrl + alt + 4
 
 # Examples
 
