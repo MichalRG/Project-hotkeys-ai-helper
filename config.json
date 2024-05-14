@@ -1,5 +1,9 @@
 {
   "translation": {
+    "engine": "deepl",
+    "model": "gpt-4o"
+  },
+  "general_question": {
     "engine": "openai",
     "model": "gpt-4o"
   }

@@ -5,6 +5,9 @@ class OllamaService:
   def __init__(self, model: str="Mistral") -> None:
     self.ollama_model_name = model
 
+  def set_model(self, model: str):
+    self.ollama_model_name = model
+
   def process_request(
     self,
     system_message: str,
@@ -22,4 +25,4 @@ class OllamaService:
     ])
     
     return response['message']['content']
-  
+ 
