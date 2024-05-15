@@ -106,7 +106,7 @@ Who is the king of UK? = returns => "King Charles III (from 2022-09-08 to presen
 
 #### Configuration
 
-config.json allows to set one of two types of general question engine - openai, anthropic and ollama (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has two posssible values: 'ollama' or 'openai'.
+config.json allows to set one of two types of general question engine - openai, anthropic and ollama (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has three posssible values: 'anthropic', 'ollama' or 'openai'.
 
 To use OpenAI u have to set openai api key in your env vars, name your variable as "APIKEY-OPENAI".
 To use [Ollama](https://ollama.com/) u have to download ollama and run it locally.
@@ -121,9 +121,16 @@ Example of configuration in config.json:
 
 ```json
 {
-  "translation": {
+  "general_question": {
     "engine": "openai",
     "model": "gpt-4o"
+  }
+}
+
+{
+  "general_question": {
+    "engine": "anthropic",
+    "model": "claude-3-opus-20240229"
   }
 }
 ```
