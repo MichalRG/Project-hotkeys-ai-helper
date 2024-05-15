@@ -132,6 +132,14 @@ Example of configuration in config.json:
 
 - ctrl + alt + 4
 
+# Models
+
+The code allows to integrate with OpenAI API, Anthropic API, Ollama model in background.
+
+1. If u work with openai, u can set such values for models like: "gpt-3.5-turbo" (quick and cheap), "gpt-4" (efficient but most expensive), "gpt-4o" (cheper then gpt-4 seems to be equally good or even better then gpt-4)
+2. If u work wiht Ollama u can install localy models and run them. Example of models: "mistral" (small, quite stupid, but respond quite quick and doesnt take too much place), "mixtral" (better version of mistral much bigger)
+3. If u work with Anthropic u can set models like: "claude-3-haiku-20240307" (fastest and most compact model, designed for near-instant responsiveness, the chepaest from Claude 3 family), claude-3-sonnet-20240229 (most balanced model between intelligence and speed, mid-tier price), claude-3-opus-20240229 (the most powerful model, high quality, performance may not be the best, the most expensive to use). There is also legacy models like "Claud-2.1" it should also work but lower models may not be handle properly (e.g. they don't handle system prompts there is lack of logic to handle such scenario).
+
 # Examples
 
 ## Example tokens' amount:
