@@ -12,7 +12,7 @@ This script in currenct version allows to use shortcuts to process request with 
 
 #### Configuration
 
-config.json allows to set one of three types of translation engine - openai/ ollama and deepl (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has two posssible values: 'deepl', 'ollama' or 'openai'.
+config.json allows to set one of four types of translation engine - openai/ ollama/ anthropic and deepl (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has four posssible values: 'deepl', 'ollama', 'anthropic' or 'openai'.
 
 To use [deepl](https://www.deepl.com/pl/your-account/keys) u have to set deepl api key in your env varaibles, name your variable as "APIKEY-DEEPL".
 To use OpenAI u have to set openai api key in your env vars, name your variable as "APIKEY-OPENAI".
@@ -42,7 +42,7 @@ Example of configuration in config.json:
 
 #### Pricing
 
-You can translate up to 500,000 characters per month for free with your api key
+You can translate up to 500,000 characters per month for free with your api key (deepl)
 
 #### Shortcut:
 
