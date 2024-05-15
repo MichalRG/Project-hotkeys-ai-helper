@@ -20,18 +20,17 @@ class AnthropicService:
     self,
     system_message: str,
     user_prompt: str, 
+    token_limit:int = 300,
     model: Optional[str] = None, 
-    token_limit:Optional[int] = None
   ) -> str:
     params = {
       "model": model or self.model,
       "system":  system_message,
+      "max_tokens": token_limit,
       "messages": [
         {"role": "user", "content": user_prompt}
       ]
     }
-    if (token_limit):
-      params["max_tokens"]=token_limit
 
     response = self.client.messages.create(
       **params

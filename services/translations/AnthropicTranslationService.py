@@ -12,4 +12,4 @@ class AnthropicTranslationService(TranslationService):
       I have to return only tranlsation! I don't add any additional description/ information, just pure translation.
     """
 
-    return self.client.process_request(system_prompt, text, token_limit=300)
+    return self.client.process_request(system_prompt, text, 300)

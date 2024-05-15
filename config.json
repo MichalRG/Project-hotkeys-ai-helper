@@ -1,10 +1,10 @@
 {
   "translation": {
-    "engine": "anthropic",
+    "engine": "deepl",
     "model": "claude-3-haiku-20240307"
   },
   "general_question": {
-    "engine": "openai",
-    "model": "gpt-4o"
+    "engine": "anthropic",
+    "model": "claude-3-opus-20240229"
   }
 }
