@@ -3,3 +3,4 @@ openai
 pyperclip
 deepl
 ollama
+anthropic

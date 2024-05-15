@@ -1,8 +1,10 @@
+from services.AnthropicService import AnthropicService
 from services.ConfigService import ConfigService
 from services.OllamaService import OllamaService
 from services.OpenAIService import OpenAIService
 from services.generalQuestions.OllamaGeneralQuestionService import OllamaGeneralQuestionService
 from services.generalQuestions.OpenAIGeneralQuestionService import OpenAIGeneralQuestionService
+from services.translations.AnthropicTranslationService import AnthropicTranslationService
 from services.translations.DeepLTranslationService import DeepLTranslationService
 from services.translations.OllamaTranslationService import OllamaTranslationService
 from services.translations.OpenAITranslationService import OpenAITranslationService
@@ -13,16 +15,18 @@ class ClientsFactory:
     self.config = kwargs.get('config', ConfigService().get_config())
     self.open_service = OpenAIService()
     self.ollama_service = OllamaService()
+    self.anthropic_service = AnthropicService()
 
     self.opena_ai_tranlsation_service = OpenAITranslationService(self.open_service)
     self.deepl = DeepLTranslationService()
     self.ollama_ai_translation_service = OllamaTranslationService(self.ollama_service)
+    self.anthropic_ai_translation_service = AnthropicTranslationService(self.anthropic_service)
 
     self.open_ai_general_question_service = OpenAIGeneralQuestionService(self.open_service)
     self.ollama_ai_general_question_service = OllamaGeneralQuestionService(self.ollama_service)
 
 
-  def get_translation_service(self) -> OpenAITranslationService | DeepLTranslationService | OllamaTranslationService:
+  def get_translation_service(self) -> OpenAITranslationService | DeepLTranslationService | OllamaTranslationService | AnthropicTranslationService:
     transaltion_service = self.config.get('translation', {}).get('engine', '')
     model = self.config.get('translation', {}).get('model')
 
@@ -32,6 +36,10 @@ class ClientsFactory:
       self.ollama_service.set_model(model)  
 
       return self.ollama_ai_translation_service
+    elif transaltion_service == 'anthropic':
+      self.anthropic_service.set_model(model)
+
+      return self.anthropic_ai_translation_service
     else:
       self.open_service.set_model(model)
 
