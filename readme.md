@@ -102,7 +102,45 @@ Who is the king of UK? = returns => "King Charles III (from 2022-09-08 to presen
 
 - ctrl + alt + 2
 
-### 4. General question
+### 4. Gramma
+
+#### Configuration
+
+config.json allows to set one of mnay types of general question engine - openai, anthropic and ollama (openai is default and if it wont match to any value it will set translation engine as openai). Engine property has three posssible values: 'anthropic', 'ollama' or 'openai'.
+
+To use OpenAI u have to set openai api key in your env vars, name your variable as "APIKEY-OPENAI".
+To use [Ollama](https://ollama.com/) u have to download ollama and run it locally.
+To use Anthropic models u have to set anthropic api key in your env vars, name your variable as "APIKEY-ANTHROPIC".
+
+Command to run ollama mistral model locally
+
+Example of configuration in config.json:
+
+```json
+{
+  "gramma": {
+    "engine": "openai",
+    "model": "gpt-4o"
+  }
+}
+
+{
+  "general_question": {
+    "engine": "anthropic",
+    "model": "claude-3-opus-20240229"
+  }
+}
+```
+
+#### Shortcut:
+
+- ctrl + alt + 3
+
+# Models
+
+The code allows to integrate with OpenAI API, Anthropic API, Ollama model in background.
+
+### 5. General question
 
 #### Configuration
 
