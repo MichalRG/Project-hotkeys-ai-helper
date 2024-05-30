@@ -10,6 +10,7 @@ class EventManager:
     self.config = ConfigService().get_config()
     clients_factory = ClientsFactory(config=self.config)
     self.translation_service = clients_factory.get_translation_service()
+    self.gramma_service = clients_factory.get_gramma_service()
     self.general_question_service = clients_factory.get_general_question_service()
     self.wolfram_service = WolframAlphaService()
 
@@ -28,6 +29,15 @@ class EventManager:
     response = self.wolfram_service.make_wolfram_question(text)
     
     paste_to_cliboard(response)
+
+  def process_gramma_task(self, text:Optional[str]=None):
+    if not text:
+      text = get_clipboard() 
+
+    response = self.gramma_service.fix_text(text)
+
+    paste_to_cliboard(response)
+
 
   def process_general_question(self, text:Optional[str]=None):
     if not text:

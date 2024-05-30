@@ -5,6 +5,9 @@ from services.OpenAIService import OpenAIService
 from services.generalQuestions.AnthropicGeneralQuestionService import AnthropicGeneralQuestionService
 from services.generalQuestions.OllamaGeneralQuestionService import OllamaGeneralQuestionService
 from services.generalQuestions.OpenAIGeneralQuestionService import OpenAIGeneralQuestionService
+from services.gramma.AnthropicGrammaService import AnthropicGrammaService
+from services.gramma.OllamaGrammaService import OllamaGrammaService
+from services.gramma.OpenAIGrammaService import OpenAIGrammaService
 from services.translations.AnthropicTranslationService import AnthropicTranslationService
 from services.translations.DeepLTranslationService import DeepLTranslationService
 from services.translations.OllamaTranslationService import OllamaTranslationService
@@ -24,6 +27,11 @@ class ClientsFactory:
     self.deepl = DeepLTranslationService()
     self.ollama_ai_translation_service = OllamaTranslationService(self.ollama_service)
     self.anthropic_ai_translation_service = AnthropicTranslationService(self.anthropic_service)
+
+    # Gramma Services
+    self.openai_gramma_service = OpenAIGrammaService(self.open_service)
+    self.anhtropic_gramma_service = AnthropicGrammaService(self.anthropic_service)
+    self.ollama_gramma_service = OllamaGrammaService(self.ollama_service)
 
     # General Question Section
     self.open_ai_general_question_service = OpenAIGeneralQuestionService(self.open_service)
@@ -49,6 +57,21 @@ class ClientsFactory:
       self.open_service.set_model(model)
 
       return self.opena_ai_tranlsation_service
+  
+  def get_gramma_service(self) -> OpenAIGrammaService | OllamaGrammaService | AnthropicGrammaService:
+    gramma_service = self.config.get('gramma', {}).get('engine')
+    model = self.config.get('gramma', {}).get('model')
+
+    if gramma_service == 'ollama':
+      self.ollama_service.set_model(model)
+      return self.ollama_gramma_service
+    elif gramma_service == 'anthropic':
+      self.anthropic_service.set_model(model)
+      return self.anhtropic_gramma_service
+    else:
+      self.open_service.set_model(model)
+      return self.openai_gramma_service
+
     
   def get_general_question_service(self) -> OpenAIGeneralQuestionService | OllamaGeneralQuestionService | AnthropicGeneralQuestionService:
     general_question_service = self.config.get('general_question', {}).get('engine')
